@@ -20,7 +20,7 @@
 
   var opts = {
     targetSelector:
-      ".btn, .logo, .nav a, .card, .tag, .hero__figure, .review, .qa-item, .faq-item summary, .step, .tc-nav, .tc-dot",
+      ".btn, .logo, .nav a, .card, .tag, .hero__figure, .review, .qa-item, .faq-item summary, .step, .tc-nav, .tc-dot, .direction-modal__close",
     spinDuration: 2,
     hideDefaultCursor: true,
     hoverDuration: 0.2,

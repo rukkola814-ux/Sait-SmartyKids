@@ -20,6 +20,7 @@
         <a href="#directions">Направления</a>
         <a href="#reviews">Отзывы</a>
         <a href="#faq">Вопросы</a>
+        <a href="#contacts">Контакты</a>
       </nav>
       <a class="btn btn--small btn--primary" href="#cta">Записаться</a>
     </div>
@@ -222,15 +223,15 @@
       <div class="container">
         <h2 class="section__title section__title--center">Основные направления</h2>
         <div class="tags-grid">
-          <span class="tag">Подготовка к школе</span>
-          <span class="tag">Чтение (СловоЛодочки, СмартиЧтение, МастерЧтения)</span>
-          <span class="tag">Ментальная арифметика</span>
-          <span class="tag">Олимпиадная математика</span>
-          <span class="tag">Английский язык</span>
-          <span class="tag">Развитие речи</span>
-          <span class="tag">Шахматы</span>
-          <span class="tag">Игротека</span>
-          <span class="tag">Творческая мастерская</span>
+          <button type="button" class="tag" data-direction="prep-school">Подготовка к школе</button>
+          <button type="button" class="tag" data-direction="reading">Чтение (СловоЛодочки, СмартиЧтение, МастерЧтения)</button>
+          <button type="button" class="tag" data-direction="mental-math">Ментальная арифметика</button>
+          <button type="button" class="tag" data-direction="olympiad-math">Олимпиадная математика</button>
+          <button type="button" class="tag" data-direction="english">Английский язык</button>
+          <button type="button" class="tag" data-direction="speech">Развитие речи</button>
+          <button type="button" class="tag" data-direction="chess">Шахматы</button>
+          <button type="button" class="tag" data-direction="games">Игротека</button>
+          <button type="button" class="tag" data-direction="creative">Творческая мастерская</button>
         </div>
       </div>
     </section>
@@ -304,9 +305,18 @@
     </section>
   </main>
 
-  <footer class="site-footer">
+  <div id="direction-modal" class="direction-modal" hidden aria-hidden="true">
+    <div class="direction-modal__backdrop" data-direction-modal-backdrop tabindex="-1" aria-hidden="true"></div>
+    <div class="direction-modal__panel" role="dialog" aria-modal="true" aria-labelledby="direction-modal-title">
+      <button type="button" class="direction-modal__close" data-direction-modal-close aria-label="Закрыть">&times;</button>
+      <h3 id="direction-modal-title" class="direction-modal__title" data-direction-modal-title></h3>
+      <div class="direction-modal__body" data-direction-modal-body></div>
+    </div>
+  </div>
+
+  <footer class="site-footer" id="contacts">
     <div class="container footer-inner">
-      <p class="footer__brand">СмартиКидс · м. Селигерская</p>
+      <p class="footer__brand">СмартиКидс · м. Селигерская · г. Москва, ул. Селигерская, д. 26 корп. 1</p>
       <p class="footer__note">Детский центр осознанного развития для детей от 4 до 14 лет</p>
     </div>
   </footer>
@@ -314,6 +324,7 @@
   <script src="typewriter.js" defer></script>
   <script src="main.js" defer></script>
   <script src="testimonial-carousel.js" defer></script>
+  <script src="directions-modal.js" defer></script>
   <script src="target-cursor.js" defer></script>
 </body>
 </html>
