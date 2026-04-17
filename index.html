@@ -301,7 +301,85 @@
       <div class="container narrow cta-section__box">
         <h2 class="section__title">Давайте подберём путь развития для вашего ребёнка</h2>
         <p class="cta-section__text">Начните с диагностики — это спокойный способ понять, что подойдёт именно вашему ребёнку.</p>
-        <a class="btn btn--primary btn--large" href="#top">Записаться на диагностику</a>
+
+        <div class="cta-form-root" data-cta-form-root>
+          <div class="cta-form-result" data-cta-success hidden role="status" aria-live="polite">
+            <p class="cta-form-result__text">Спасибо! Дождитесь подтверждения записи. Мы свяжемся с вами в ближайшее время</p>
+          </div>
+
+          <div class="cta-form-alert cta-form-alert--error" data-cta-server-error hidden role="alert" aria-live="assertive">
+            Не удалось отправить заявку. Попробуйте ещё раз позже или позвоните нам: <a href="tel:+79651927233">+7 (965) 192-72-33</a>
+          </div>
+
+          <form
+            id="cta-diagnostic-form"
+            class="cta-form"
+            action="https://formsubmit.co/smartikids@example.com"
+            method="POST"
+            novalidate
+            data-cta-form
+          >
+            <input type="hidden" name="_subject" value="Запись на диагностику — СмартиСадКО">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <p class="cta-form__intro">
+              Добрый день! Меня зовут Оксана — я руководитель Детского центра.
+              Спасибо за доверие к нам. После заполнения анкеты наш администратор свяжется с Вами и расскажет про выбранные
+              направления занятий для вашего ребёнка.
+            </p>
+
+            <div class="cta-form__field">
+              <label class="cta-form__label" for="cta-parent-name">Ваше имя <span class="cta-form__req">*</span></label>
+              <input class="cta-form__input" type="text" id="cta-parent-name" name="Имя родителя" required autocomplete="name" maxlength="120">
+              <p class="cta-form__error" data-cta-error-for="cta-parent-name" hidden></p>
+            </div>
+
+            <div class="cta-form__field">
+              <label class="cta-form__label" for="cta-phone">Ваш телефон <span class="cta-form__req">*</span></label>
+              <input class="cta-form__input" type="tel" id="cta-phone" name="Телефон" required autocomplete="tel" inputmode="tel">
+              <p class="cta-form__error" data-cta-error-for="cta-phone" hidden></p>
+            </div>
+
+            <div class="cta-form__field">
+              <label class="cta-form__label" for="cta-child-name">Имя ребёнка</label>
+              <input class="cta-form__input" type="text" id="cta-child-name" name="Имя ребёнка" autocomplete="off" maxlength="120">
+            </div>
+
+            <div class="cta-form__field">
+              <label class="cta-form__label" for="cta-datetime">Желаемая дата и время</label>
+              <input class="cta-form__input" type="text" id="cta-datetime" name="Желаемая дата и время" placeholder="Например: 25 апреля, 15:00" maxlength="200">
+            </div>
+
+            <fieldset class="cta-form__fieldset">
+              <legend class="cta-form__legend">Какое направление вам интересно?</legend>
+              <ul class="cta-form__checks">
+                <li><label class="cta-form__check"><input type="checkbox" name="Направление" value="Подготовка к школе"> Подготовка к школе</label></li>
+                <li><label class="cta-form__check"><input type="checkbox" name="Направление" value="Математика"> Математика</label></li>
+                <li><label class="cta-form__check"><input type="checkbox" name="Направление" value="Чтение"> Чтение</label></li>
+                <li><label class="cta-form__check"><input type="checkbox" name="Направление" value="Каллиграфия и Грамотное письмо"> Каллиграфия и Грамотное письмо</label></li>
+                <li><label class="cta-form__check"><input type="checkbox" name="Направление" value="Английский язык"> Английский язык</label></li>
+                <li><label class="cta-form__check"><input type="checkbox" name="Направление" value="Творческая мастерская"> Творческая мастерская</label></li>
+              </ul>
+            </fieldset>
+
+            <div class="cta-form__field cta-form__field--check">
+              <label class="cta-form__check cta-form__check--block">
+                <input type="checkbox" name="Согласие с условиями формы" value="да">
+                Согласна с условиями использования формы заявки и <span class="cta-form__inline-link">политикой конфиденциальности</span> лица, разместившего форму заявки.
+              </label>
+            </div>
+
+            <div class="cta-form__field cta-form__field--check">
+              <label class="cta-form__check cta-form__check--block">
+                <input type="checkbox" id="cta-consent-pd" name="Согласие на обработку ПДн" value="да" data-cta-consent>
+                Даю согласие на обработку персональных данных <span class="cta-form__req">*</span>
+              </label>
+              <p class="cta-form__error" data-cta-error-for="cta-consent-pd" hidden></p>
+            </div>
+
+            <button type="submit" class="btn btn--primary btn--large cta-form__submit" data-cta-submit>Записаться на диагностику</button>
+          </form>
+        </div>
       </div>
     </section>
   </main>
