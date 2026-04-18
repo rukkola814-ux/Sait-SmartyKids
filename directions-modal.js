@@ -156,16 +156,46 @@
 
   var titleEl = overlay.querySelector("[data-direction-modal-title]");
   var bodyEl = overlay.querySelector("[data-direction-modal-body]");
+  var panelEl = overlay.querySelector(".direction-modal__panel");
   var closeBtn = overlay.querySelector("[data-direction-modal-close]");
   var backdrop = overlay.querySelector("[data-direction-modal-backdrop]");
   var lastFocus = null;
 
+  var ctaFormRoot = document.querySelector("[data-cta-form-root]");
+  var ctaSlotParent = document.querySelector("#cta .cta-section__box");
+  var ctaOpenBtn = document.querySelector("#cta a.btn.btn--primary.btn--large");
+
+  function restoreCtaFormToSection() {
+    if (!ctaFormRoot || !ctaSlotParent) return;
+    if (ctaSlotParent.contains(ctaFormRoot)) return;
+    ctaSlotParent.appendChild(ctaFormRoot);
+    ctaFormRoot.hidden = true;
+    if (bodyEl) bodyEl.hidden = false;
+  }
+
   function openModal(key) {
     var data = descriptions[key];
     if (!data || !titleEl || !bodyEl) return;
+    restoreCtaFormToSection();
     lastFocus = document.activeElement;
     titleEl.textContent = data.title;
     bodyEl.textContent = data.body;
+    bodyEl.hidden = false;
+    overlay.hidden = false;
+    overlay.setAttribute("aria-hidden", "false");
+    document.body.classList.add("direction-modal-open");
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function openDiagnosticModal() {
+    if (!ctaFormRoot || !panelEl || !titleEl || !bodyEl) return;
+    lastFocus = document.activeElement;
+    restoreCtaFormToSection();
+    titleEl.textContent = "Запись на диагностику";
+    bodyEl.textContent = "";
+    bodyEl.hidden = true;
+    panelEl.appendChild(ctaFormRoot);
+    ctaFormRoot.hidden = false;
     overlay.hidden = false;
     overlay.setAttribute("aria-hidden", "false");
     document.body.classList.add("direction-modal-open");
@@ -173,6 +203,7 @@
   }
 
   function closeModal() {
+    restoreCtaFormToSection();
     overlay.hidden = true;
     overlay.setAttribute("aria-hidden", "true");
     document.body.classList.remove("direction-modal-open");
@@ -185,6 +216,13 @@
       if (key) openModal(key);
     });
   });
+
+  if (ctaOpenBtn) {
+    ctaOpenBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      openDiagnosticModal();
+    });
+  }
 
   if (closeBtn) closeBtn.addEventListener("click", closeModal);
   if (backdrop) backdrop.addEventListener("click", closeModal);

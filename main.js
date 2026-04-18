@@ -95,7 +95,7 @@
   }
 
   function clearErrors() {
-    ["cta-parent-name", "cta-phone", "cta-consent-pd"].forEach(function (id) {
+    ["cta-parent-name", "cta-phone", "cta-consent-terms", "cta-consent-pd"].forEach(function (id) {
       setFieldError(id, "");
     });
   }
@@ -115,6 +115,11 @@
       ok = false;
     } else if (digitsOnly(phoneVal) < 10) {
       setFieldError("cta-phone", "Введите номер: не меньше 10 цифр.");
+      ok = false;
+    }
+    var termsConsent = document.querySelector("[data-cta-terms-consent]");
+    if (!termsConsent || !termsConsent.checked) {
+      setFieldError("cta-consent-terms", "Нужно согласие с условиями использования формы и политикой конфиденциальности.");
       ok = false;
     }
     var consent = document.querySelector("[data-cta-consent]");
@@ -182,6 +187,12 @@
   if (consentEl) {
     consentEl.addEventListener("change", function () {
       setFieldError("cta-consent-pd", "");
+    });
+  }
+  var termsConsentEl = document.querySelector("[data-cta-terms-consent]");
+  if (termsConsentEl) {
+    termsConsentEl.addEventListener("change", function () {
+      setFieldError("cta-consent-terms", "");
     });
   }
 })();

@@ -301,8 +301,9 @@
       <div class="container narrow cta-section__box">
         <h2 class="section__title">Давайте подберём путь развития для вашего ребёнка</h2>
         <p class="cta-section__text">Начните с диагностики — это спокойный способ понять, что подойдёт именно вашему ребёнку.</p>
+        <a class="btn btn--primary btn--large" href="#">Записаться на диагностику</a>
 
-        <div class="cta-form-root" data-cta-form-root>
+        <div class="cta-form-root" data-cta-form-root hidden>
           <div class="cta-form-result" data-cta-success hidden role="status" aria-live="polite">
             <p class="cta-form-result__text">Спасибо! Дождитесь подтверждения записи. Мы свяжемся с вами в ближайшее время</p>
           </div>
@@ -314,7 +315,7 @@
           <form
             id="cta-diagnostic-form"
             class="cta-form"
-            action="https://formsubmit.co/smartikids@example.com"
+            action="https://formsubmit.co/nosmakova@rambler.ru"
             method="POST"
             novalidate
             data-cta-form
@@ -364,9 +365,10 @@
 
             <div class="cta-form__field cta-form__field--check">
               <label class="cta-form__check cta-form__check--block">
-                <input type="checkbox" name="Согласие с условиями формы" value="да">
-                Согласна с условиями использования формы заявки и <span class="cta-form__inline-link">политикой конфиденциальности</span> лица, разместившего форму заявки.
+                <input type="checkbox" id="cta-consent-terms" name="Согласие с условиями формы" value="да" required data-cta-terms-consent>
+                Согласна с условиями использования формы заявки и <span class="cta-form__inline-link">политикой конфиденциальности</span> лица, разместившего форму заявки. <span class="cta-form__req">*</span>
               </label>
+              <p class="cta-form__error" data-cta-error-for="cta-consent-terms" hidden></p>
             </div>
 
             <div class="cta-form__field cta-form__field--check">
