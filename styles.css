@@ -6,17 +6,14 @@
   --bg-card: #ffffff;
   --ink: #1a2330;
   --ink-muted: #556070;
-  /* Иллюстрация: худи, кеды */
-  --brand-red: #e63928;
+  --brand-red: #5c2f48;
   --brand-red-soft: #fde8e6;
-  /* Рюкзак, акценты */
   --brand-blue: #1e88e5;
   --brand-blue-dark: #1565c0;
   --brand-blue-soft: #e3f2fd;
-  /* Колёса скейтборда */
   --brand-yellow: #fdd835;
   --brand-yellow-soft: #fff8e1;
-  /* Сохраняем «спокойный» акцент текста + CTA */
+  --btn-outline-photo: #2a4a5a;
   --accent: var(--brand-blue);
   --accent-dark: var(--brand-blue-dark);
   --accent-light: var(--brand-blue-soft);
@@ -193,8 +190,8 @@ a:hover {
 
 .btn--outline {
   background: rgba(255, 255, 255, 0.65);
-  color: var(--ink);
-  border-color: var(--ink);
+  color: var(--btn-outline-photo);
+  border-color: var(--btn-outline-photo);
 }
 
 .btn--outline:hover {
@@ -410,7 +407,7 @@ a:hover {
   font-size: 1.125rem;
   color: var(--ink-muted);
   line-height: 1.7;
-  max-width: 38rem;
+  max-width: min(40rem, 100%);
 }
 
 .hero__actions {
