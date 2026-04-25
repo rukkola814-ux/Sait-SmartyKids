@@ -410,17 +410,38 @@ a:hover {
   max-width: min(40rem, 100%);
 }
 
-.hero__actions {
+/* Лид + кнопки + ссылка на квиз — общее центрирование в колонке героя */
+.hero__cta-stack {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
 }
 
-.hero__quiz-note {
+.hero__cta-stack .hero__lead {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero__cta-stack .hero__actions {
+  justify-content: center;
+}
+
+.hero__cta-stack .hero__quiz-note {
   position: relative;
   z-index: 2;
   margin: 0.85rem 0 0;
   max-width: min(40rem, 100%);
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .hero__quiz-link {
@@ -445,11 +466,16 @@ a:hover {
 }
 
 .method-quiz-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   margin-top: 1.75rem;
   padding: 1.35rem 1.5rem;
   background: var(--brand-blue-soft);
   border: 1px solid rgba(30, 136, 229, 0.2);
   border-radius: var(--radius);
+  box-sizing: border-box;
 }
 
 .method-quiz-cta__text {
@@ -457,10 +483,13 @@ a:hover {
   font-size: 1.02rem;
   line-height: 1.65;
   color: var(--ink);
+  max-width: 100%;
 }
 
 .method-quiz-cta .btn {
   margin-top: 0.15rem;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* Появление текста героя каскадом */
@@ -1645,19 +1674,6 @@ body.direction-modal-open {
   .hero__content {
     max-width: 36rem;
     margin-inline: auto;
-  }
-
-  .hero__lead {
-    margin-inline: auto;
-  }
-
-  .hero__actions {
-    justify-content: center;
-  }
-
-  .hero__quiz-note {
-    margin-inline: auto;
-    text-align: center;
   }
 
   .eyebrow {
