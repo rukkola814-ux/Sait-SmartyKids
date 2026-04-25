@@ -51,6 +51,11 @@
             <a class="btn btn--primary btn--large" href="#cta">Записаться на диагностику</a>
             <a class="btn btn--outline btn--large" href="#directions">Посмотреть направления</a>
           </div>
+          <p class="hero__quiz-note hero__anim" data-anim style="--d: 340ms">
+            <button type="button" class="hero__quiz-link quiz-trigger-main">
+              Пройти квиз «Сильные стороны ребёнка»
+            </button>
+          </p>
         </div>
         <figure class="hero__figure" aria-label="Персонаж СмартиСадКО">
           <div class="hero__figure-ring" aria-hidden="true"></div>
@@ -159,6 +164,15 @@
             <li>Самовыражение (творчество, уверенность)</li>
           </ul>
           <p>Это помогает развивать ребёнка целостно — без перекосов и перегрузок.</p>
+          <div class="method-quiz-cta">
+            <p class="method-quiz-cta__text">
+              Хотите узнать, какие сильные стороны уже есть у вашего ребёнка?<br>
+              Пройдите небольшой квиз — это займёт 2 минуты.
+            </p>
+            <button type="button" class="btn btn--primary quiz-trigger-method">
+              Пройти квиз «Сильные стороны ребёнка»
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -386,6 +400,14 @@
     </section>
   </main>
 
+  <div id="quizModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="quiz-modal-title" hidden>
+    <div class="modal-content">
+      <span class="close-modal" role="button" tabindex="0" aria-label="Закрыть">&times;</span>
+      <h2 id="quiz-modal-title" class="visually-hidden">Квиз «Сильные стороны ребёнка»</h2>
+      <iframe id="quizIframe" src="" title="Квиз «Сильные стороны ребёнка»"></iframe>
+    </div>
+  </div>
+
   <div id="direction-modal" class="direction-modal" hidden aria-hidden="true">
     <div class="direction-modal__backdrop" data-direction-modal-backdrop tabindex="-1" aria-hidden="true"></div>
     <div class="direction-modal__panel" role="dialog" aria-modal="true" aria-labelledby="direction-modal-title">
@@ -406,5 +428,69 @@
   <script src="main.js" defer></script>
   <script src="testimonial-carousel.js" defer></script>
   <script src="directions-modal.js" defer></script>
+  <script>
+(function () {
+  var modal = document.getElementById("quizModal");
+  var iframe = document.getElementById("quizIframe");
+  var closeBtn = document.querySelector("#quizModal .close-modal");
+  var quizPageUrl = "quiz/index.html";
+
+  function openQuizModal() {
+    if (!modal || !iframe) return;
+    if (!iframe.getAttribute("src") || iframe.src.indexOf("quiz/index.html") === -1) {
+      iframe.src = quizPageUrl;
+    }
+    modal.hidden = false;
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeQuizModal() {
+    if (!modal) return;
+    modal.hidden = true;
+    document.body.style.overflow = "";
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener("click", closeQuizModal);
+    closeBtn.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        closeQuizModal();
+      }
+    });
+  }
+
+  if (modal) {
+    modal.addEventListener("click", function (e) {
+      if (e.target === modal) closeQuizModal();
+    });
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && modal && !modal.hidden) {
+      closeQuizModal();
+    }
+  });
+
+  document.querySelectorAll(".quiz-trigger-main, .quiz-trigger-method").forEach(function (trigger) {
+    trigger.addEventListener("click", function (e) {
+      e.preventDefault();
+      openQuizModal();
+    });
+  });
+
+  window.addEventListener("message", function (e) {
+    if (!e.data || e.data.type !== "smartykids-open-diagnostic") return;
+    if (iframe && e.source !== iframe.contentWindow) return;
+    closeQuizModal();
+    var ctaLink = document.querySelector("#cta a.btn.btn--primary.btn--large");
+    if (ctaLink) {
+      window.requestAnimationFrame(function () {
+        ctaLink.click();
+      });
+    }
+  });
+})();
+  </script>
 </body>
 </html>

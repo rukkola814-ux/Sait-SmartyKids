@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Квиз: Сильные стороны ребёнка</title>
+  <link rel="stylesheet" href="quiz.css">
+</head>
+<body style="margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);">
+  <div id="strengths-quiz-root" class="strengths-quiz">
+    <div class="quiz-container">
+      <h1 id="strengths-quiz-title" class="quiz-title">Сильные стороны ребёнка</h1>
+      <p id="strengths-quiz-subtitle" class="quiz-subtitle">Небольшой опрос для родителей детей 5–14 лет: какой тип мышления ближе вашему ребёнку?</p>
+      <div class="progress-bar">
+        <div class="progress-fill" id="strengths-quiz-progress-fill"></div>
+        <span class="progress-text" id="strengths-quiz-progress-text">1/5</span>
+      </div>
+      <div class="question-container" id="strengths-quiz-question-container"></div>
+      <div class="result-container" id="strengths-quiz-result-container" style="display: none;">
+        <h2 id="strengths-quiz-result-title"></h2>
+        <p id="strengths-quiz-result-description"></p>
+        <p>Точно определить сильные стороны ребёнка и подобрать оптимальный путь развития можно на диагностике</p>
+        <button type="button" class="cta-button" data-strengths-quiz-cta>Записаться на диагностику</button>
+        <button type="button" class="retry-button" data-strengths-quiz-retry>Пройти ещё раз</button>
+      </div>
+    </div>
+  </div>
+  <script src="quiz.js"></script>
+</body>
+</html>
