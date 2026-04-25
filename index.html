@@ -400,14 +400,6 @@
     </section>
   </main>
 
-  <div id="quizModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="quiz-modal-title" hidden>
-    <div class="modal-content">
-      <span class="close-modal" role="button" tabindex="0" aria-label="Закрыть">&times;</span>
-      <h2 id="quiz-modal-title" class="visually-hidden">Квиз «Сильные стороны ребёнка»</h2>
-      <iframe id="quizIframe" src="" title="Квиз «Сильные стороны ребёнка»"></iframe>
-    </div>
-  </div>
-
   <div id="direction-modal" class="direction-modal" hidden aria-hidden="true">
     <div class="direction-modal__backdrop" data-direction-modal-backdrop tabindex="-1" aria-hidden="true"></div>
     <div class="direction-modal__panel" role="dialog" aria-modal="true" aria-labelledby="direction-modal-title">
@@ -428,25 +420,33 @@
   <script src="main.js" defer></script>
   <script src="testimonial-carousel.js" defer></script>
   <script src="directions-modal.js" defer></script>
+
+  <div id="quizModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="quiz-modal-title">
+    <div class="modal-content">
+      <span class="close-modal" role="button" tabindex="0" aria-label="Закрыть">&times;</span>
+      <h2 id="quiz-modal-title" class="visually-hidden">Квиз «Сильные стороны ребёнка»</h2>
+      <iframe id="quizIframe" src="" title="Квиз «Сильные стороны ребёнка»"></iframe>
+    </div>
+  </div>
+
   <script>
 (function () {
   var modal = document.getElementById("quizModal");
   var iframe = document.getElementById("quizIframe");
   var closeBtn = document.querySelector("#quizModal .close-modal");
-  var quizPageUrl = "quiz/index.html";
 
   function openQuizModal() {
     if (!modal || !iframe) return;
-    if (!iframe.getAttribute("src") || iframe.src.indexOf("quiz/index.html") === -1) {
-      iframe.src = quizPageUrl;
+    if (!iframe.src || iframe.src.indexOf("quiz/index.html") === -1) {
+      iframe.src = new URL("quiz/index.html", window.location.href).href;
     }
-    modal.hidden = false;
+    modal.style.display = "flex";
     document.body.style.overflow = "hidden";
   }
 
   function closeQuizModal() {
     if (!modal) return;
-    modal.hidden = true;
+    modal.style.display = "none";
     document.body.style.overflow = "";
   }
 
@@ -467,7 +467,7 @@
   }
 
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && modal && !modal.hidden) {
+    if (e.key === "Escape" && modal && modal.style.display === "flex") {
       closeQuizModal();
     }
   });
